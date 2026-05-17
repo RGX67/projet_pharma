@@ -1,0 +1,37 @@
+# --- Données brutes (fichiers trop volumineux pour Git) ---
+data/raw/
+data/clean/
+
+# --- Environnements Python ---
+.env
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# --- Outputs générés ---
+outputs/graphiques/
+outputs/*.png
+outputs/*.jpg
+
+# --- Système ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Distribution Python ---
+dist/
+build/
+*.egg-info/
