@@ -49,8 +49,8 @@ Ce projet cherche à répondre à trois questions :
 ## Méthodologie
 
 ### Partie 1 — Analyse descriptive
-Exploration des tendances temporelles, des classes thérapeutiques les plus coûteuses,
-des disparités régionales et des profils démographiques.
+Exploration des classes thérapeutiques les plus coûteuses (volume vs coût par
+boîte), des disparités régionales et du croisement classe × région.
 
 ### Partie 2 — Modélisation OLS
 Régression linéaire multiple pour quantifier l'effet marginal de l'année, du volume
@@ -68,15 +68,13 @@ Diagnostics statistiques : résidus, QQ-plot, test de Breusch-Pagan, erreurs rob
 
 | Notebook | Description |
 |----------|-------------|
-| `01_import_nettoyage.ipynb` | Chargement, détection d'encodage, nettoyage des types, export CSV propre |
-| `02_analyse_descriptive.ipynb` | Statistiques descriptives par classe ATC et par région |
-| `03_visualisations.ipynb` | Graphiques d'évolution, heatmaps, comparaisons inter-régionales |
+| `02_analyse_classes_regions.ipynb` | Chargement agrégé (mémoire optimisée), statistiques par classe ATC1 et par région, croisement classe × région, export vers `data/clean/` |
 | `04_regression_ols.ipynb` | Régression OLS simple et multiple, diagnostics, erreurs robustes |
 | `05_conclusions.ipynb` | Rapport de synthèse avec interprétation économique complète |
 | `06_machine_learning.ipynb` | Ridge CV, Lasso CV, comparaison OLS vs régularisé, export résultats |
 | `07_clustering.ipynb` | K-Means, méthode du coude, profils des clusters, export CSV |
 
-**Ordre d'exécution recommandé :** `01` → `02` → `03` → `04` → `05` → `06` → `07`
+**Ordre d'exécution recommandé :** `02` → `04` → `05` → `06` → `07`
 
 ---
 
@@ -118,9 +116,7 @@ projet_pharma/
 │   └── clean/                      ← Données nettoyées et tables de synthèse
 │
 ├── notebooks/
-│   ├── 01_import_nettoyage.ipynb
-│   ├── 02_analyse_descriptive.ipynb
-│   ├── 03_visualisations.ipynb
+│   ├── 02_analyse_classes_regions.ipynb
 │   ├── 04_regression_ols.ipynb
 │   ├── 05_conclusions.ipynb
 │   ├── 06_machine_learning.ipynb

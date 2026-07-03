@@ -24,13 +24,11 @@ projet_pharma/
 │   ├── raw/                  → fichiers bruts Open Medic (AMELI)
 │   └── clean/                → données nettoyées
 ├── notebooks/
-│   ├── 01_import_nettoyage.ipynb       → chargement, nettoyage, encodage
-│   ├── 02_analyse_descriptive.ipynb    → statistiques, évolutions, top médicaments
-│   ├── 03_visualisations.ipynb         → graphiques dépenses, classes thérapeutiques
-│   ├── 04_regression_ols.ipynb         → OLS, Breusch-Pagan, erreurs robustes HC3
-│   ├── 05_conclusions.ipynb            → interprétations économiques
-│   ├── 06_machine_learning.ipynb       → Ridge, Lasso, comparaison des modèles
-│   └── 07_clustering.ipynb             → K-Means, méthode du coude, profils ATC
+│   ├── 02_analyse_classes_regions.ipynb → statistiques par classe ATC1, par région, croisement
+│   ├── 04_regression_ols.ipynb          → OLS, Breusch-Pagan, erreurs robustes HC3
+│   ├── 05_conclusions.ipynb             → interprétations économiques
+│   ├── 06_machine_learning.ipynb        → Ridge, Lasso, comparaison des modèles
+│   └── 07_clustering.ipynb              → K-Means, méthode du coude, profils ATC
 ├── outputs/                  → résultats exportés (CSV, graphiques)
 ├── requirements.txt
 └── README.md
@@ -51,10 +49,10 @@ projet_pharma/
 
 ## Méthodes et outils
 
-### Statistiques descriptives (notebooks 01–03)
-- Nettoyage et harmonisation des données multi-années (`pd.concat`, gestion encodages)
-- Analyse des tendances : évolution des remboursements, répartition par âge, par région
-- Visualisations : courbes temporelles, barplots par classe ATC, heatmaps régionales
+### Statistiques descriptives (notebook 02)
+- Chargement agrégé dès la lecture (mémoire optimisée), harmonisation multi-années
+- Analyse des classes thérapeutiques : remboursements, volume, coût par boîte
+- Visualisations : barplots par classe ATC, scatter volume × coût, heatmap classe × région
 
 ### Économétrie (notebook 04–05)
 - **Régression OLS** (`statsmodels`) : remboursement ~ année + volume + effets fixes ATC
@@ -108,7 +106,7 @@ pip install -r requirements.txt
 
 Télécharger les fichiers Open Medic depuis [AMELI](https://assurance-maladie.ameli.fr/etudes-et-donnees/open-medic-depenses-medicaments) et les placer dans `data/raw/`.
 
-Puis lancer les notebooks dans l'ordre (01 → 07) depuis VS Code ou Jupyter.
+Puis lancer les notebooks dans l'ordre (02 → 04 → 05 → 06 → 07) depuis VS Code ou Jupyter.
 
 ---
 
