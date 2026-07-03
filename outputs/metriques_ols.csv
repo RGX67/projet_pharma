@@ -1,2 +1,2 @@
 modele,n_obs,R2,R2_adj,AIC,BIC,F_stat,F_pvalue
-OLS multiple,140,0.9868,0.9802,5806.05,5944.3,150.5979,0.0
+OLS multiple,140,0.9354,0.9276,5965.92,6012.99,119.652,0.0

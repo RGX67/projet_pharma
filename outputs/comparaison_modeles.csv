@@ -1,5 +1,5 @@
 Modèle,Alpha,R²,RMSE (€),Variables actives,Variables éliminées,Régularisation
-OLS (statsmodels),-,0.9868,-,46,0,Aucune
-OLS (sklearn),-,0.9868,"175,163,131",46,0,Aucune
-Ridge (RidgeCV),0.1874,0.9861,"179,708,703",46,0,L2 (rétrécissement)
-Lasso (LassoCV),814091.0404,0.9858,"181,482,133",45,1,L1 (sélection)
+OLS (statsmodels),-,0.9354,-,15,0,Aucune
+OLS (sklearn),-,0.9354,"386,886,495",15,0,Aucune
+Ridge (RidgeCV),18.7382,0.9146,"444,849,400",15,0,L2 (rétrécissement)
+Lasso (LassoCV),1161723.9319,0.9342,"390,402,863",15,0,L1 (sélection)

@@ -7,8 +7,58 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 from pathlib import Path
+import unicodedata
+import re
 import warnings
 warnings.filterwarnings('ignore')
+
+# --- Harmonisation des libellés ATC1 -----------------------------------------
+# Open Medic change de format d'année en année (accents, casse, troncature 2016,
+# corruption d'encodage 2025) : sans harmonisation, une même classe thérapeutique
+# apparaît sous 2 à 4 orthographes différentes et fausse tout groupby('l_atc1').
+ATC1_CANONIQUES = [
+    'Anti-infectieux (usage systémique)',
+    'Antinéoplasiques et agents immunomodulants',
+    'Antiparasitaires, insecticides et répulsifs',
+    'Dermatologie',
+    'Divers',
+    'Hormones systémiques, à l exclusion des hormones sexuelles et des insulines',
+    'Organes sensoriels',
+    'Sang et organes hématopoiétiques',
+    'Système cardio-vasculaire',
+    'Système digestif et métabolisme',
+    'Système génito-urinaire et hormones sexuelles',
+    'Système musculo-squelettique',
+    'Système nerveux',
+    'Système respiratoire',
+]
+ATC1_ALIAS = {'SANG ET ORGANES HEMATOPOIETQUES': 'Sang et organes hématopoiétiques'}  # coquille source 2022-2024
+
+def _normaliser_atc1_cle(serie):
+    s = serie.astype(str).str.strip().str.upper()
+    s = s.apply(lambda x: unicodedata.normalize('NFKD', x))
+    s = s.str.encode('ascii', 'ignore').str.decode('ascii')
+    return s.str.replace(r'[^A-Z0-9\x1a]+', ' ', regex=True).str.strip()
+
+_cle_vers_canonique = {_normaliser_atc1_cle(pd.Series([c])).iloc[0]: c for c in ATC1_CANONIQUES}
+_cles_canoniques = list(_cle_vers_canonique.keys())
+
+def _resoudre_atc1(cle_brute):
+    if cle_brute in _cle_vers_canonique:
+        return _cle_vers_canonique[cle_brute]
+    if '\x1a' in cle_brute:
+        motif = re.compile('^' + re.escape(cle_brute).replace(re.escape('\x1a'), '.') + '$')
+        matches = [c for c in _cles_canoniques if motif.match(c)]
+        if len(matches) == 1:
+            return _cle_vers_canonique[matches[0]]
+    matches = [c for c in _cles_canoniques if c.startswith(cle_brute)]
+    return _cle_vers_canonique[matches[0]] if len(matches) == 1 else None
+
+def harmoniser_atc1(serie):
+    """Ramène les libellés l_atc1 bruts (jusqu'à 45 variantes observées) aux 14
+    vraies classes ATC1, quelle que soit l'année source."""
+    brut = serie.astype(str).str.strip().replace(ATC1_ALIAS)
+    return _normaliser_atc1_cle(brut).map(_resoudre_atc1).fillna(brut)
 
 # ---------------------------------------------------------------------------
 # Configuration de la page
@@ -48,6 +98,7 @@ def load_data():
                     for col in ['rem', 'bse']:
                         if col in df.columns:
                             df[col] = parse_euro(df[col])
+                    df['l_atc1'] = harmoniser_atc1(df['l_atc1'])
                     df['annee'] = annee
                     frames.append(df[['annee', 'l_atc1', 'rem', 'boites']])
                     break
