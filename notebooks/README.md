@@ -1,5 +1,6 @@
 # Analyse des dépenses pharmaceutiques en France (2016–2025)
 
+
 > Projet data science — L3 Économie-Gestion · Université de Strasbourg  
 > Données : **Open Medic / AMELI** (Assurance Maladie)
 
@@ -100,7 +101,7 @@ projet_pharma/
 ## Installation
 
 ```bash
-git clone https://github.com/[ton-username]/projet_pharma.git
+git clone https://github.com/[RGX67]/projet_pharma.git
 cd projet_pharma
 pip install -r requirements.txt
 ```
