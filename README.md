@@ -69,12 +69,12 @@ Diagnostics statistiques : résidus, QQ-plot, test de Breusch-Pagan, erreurs rob
 | Notebook | Description |
 |----------|-------------|
 | `02_analyse_classes_regions.ipynb` | Chargement agrégé (mémoire optimisée), statistiques par classe ATC1 et par région, croisement classe × région, export vers `data/clean/` |
-| `04_regression_ols.ipynb` | Régression OLS simple et multiple, diagnostics, erreurs robustes |
-| `05_conclusions.ipynb` | Rapport de synthèse avec interprétation économique complète |
-| `06_machine_learning.ipynb` | Ridge CV, Lasso CV, comparaison OLS vs régularisé, export résultats |
-| `07_clustering.ipynb` | K-Means, méthode du coude, profils des clusters, export CSV |
+| `03_regression_ols.ipynb` | Régression OLS simple et multiple, diagnostics, erreurs robustes |
+| `04_conclusions.ipynb` | Rapport de synthèse avec interprétation économique complète |
+| `05_machine_learning.ipynb` | Ridge CV, Lasso CV, comparaison OLS vs régularisé, export résultats |
+| `06_clustering.ipynb` | K-Means, méthode du coude, profils des clusters, export CSV |
 
-**Ordre d'exécution recommandé :** `02` → `04` → `05` → `06` → `07`
+**Ordre d'exécution recommandé :** `02` → `03` → `04` → `05` → `06`
 
 ---
 
@@ -117,10 +117,10 @@ projet_pharma/
 │
 ├── notebooks/
 │   ├── 02_analyse_classes_regions.ipynb
-│   ├── 04_regression_ols.ipynb
-│   ├── 05_conclusions.ipynb
-│   ├── 06_machine_learning.ipynb
-│   └── 07_clustering.ipynb
+│   ├── 03_regression_ols.ipynb
+│   ├── 04_conclusions.ipynb
+│   ├── 05_machine_learning.ipynb
+│   └── 06_clustering.ipynb
 │
 ├── outputs/
 │   ├── resultats_ols.csv

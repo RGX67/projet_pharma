@@ -25,10 +25,10 @@ projet_pharma/
 │   └── clean/                → données nettoyées
 ├── notebooks/
 │   ├── 02_analyse_classes_regions.ipynb → statistiques par classe ATC1, par région, croisement
-│   ├── 04_regression_ols.ipynb          → OLS, Breusch-Pagan, erreurs robustes HC3
-│   ├── 05_conclusions.ipynb             → interprétations économiques
-│   ├── 06_machine_learning.ipynb        → Ridge, Lasso, comparaison des modèles
-│   └── 07_clustering.ipynb              → K-Means, méthode du coude, profils ATC
+│   ├── 03_regression_ols.ipynb          → OLS, Breusch-Pagan, erreurs robustes HC3
+│   ├── 04_conclusions.ipynb             → interprétations économiques
+│   ├── 05_machine_learning.ipynb        → Ridge, Lasso, comparaison des modèles
+│   └── 06_clustering.ipynb              → K-Means, méthode du coude, profils ATC
 ├── outputs/                  → résultats exportés (CSV, graphiques)
 ├── requirements.txt
 └── README.md
@@ -54,17 +54,17 @@ projet_pharma/
 - Analyse des classes thérapeutiques : remboursements, volume, coût par boîte
 - Visualisations : barplots par classe ATC, scatter volume × coût, heatmap classe × région
 
-### Économétrie (notebook 04–05)
+### Économétrie (notebook 03–04)
 - **Régression OLS** (`statsmodels`) : remboursement ~ année + volume + effets fixes ATC
 - Diagnostic : test de **Breusch-Pagan** (hétéroscédasticité), erreurs robustes **HC3**
 - Interprétation économique des coefficients : tendance temporelle, effet volume, primes ATC
 
-### Machine Learning (notebook 06)
+### Machine Learning (notebook 05)
 - **Ridge (L2)** et **Lasso (L1)** via `scikit-learn` avec validation croisée (`RidgeCV`, `LassoCV`)
 - Sélection automatique de variables par Lasso
 - Comparaison des performances : R², RMSE, nombre de variables actives
 
-### Clustering (notebook 07)
+### Clustering (notebook 06)
 - **K-Means** sur les classes ATC1 (remboursement moyen, volume, coût/boîte, taux de croissance)
 - Choix du k optimal : méthode du coude + score de silhouette
 - Identification de profils : *masse/bas coût*, *premium/spécialisé*, *croissance dynamique*, *déclin structurel*
@@ -106,7 +106,7 @@ pip install -r requirements.txt
 
 Télécharger les fichiers Open Medic depuis [AMELI](https://assurance-maladie.ameli.fr/etudes-et-donnees/open-medic-depenses-medicaments) et les placer dans `data/raw/`.
 
-Puis lancer les notebooks dans l'ordre (02 → 04 → 05 → 06 → 07) depuis VS Code ou Jupyter.
+Puis lancer les notebooks dans l'ordre (02 → 03 → 04 → 05 → 06) depuis VS Code ou Jupyter.
 
 ---
 
